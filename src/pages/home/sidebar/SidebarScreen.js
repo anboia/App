@@ -23,6 +23,7 @@ import ONYXKEYS from '../../../ONYXKEYS';
 import * as Policy from '../../../libs/actions/Policy';
 import Performance from '../../../libs/Performance';
 import * as Welcome from '../../../libs/actions/Welcome';
+import ReportActionComposeFocusManager from '../../../libs/ReportActionComposeFocusManager';
 
 const propTypes = {
     /* Beta features list */
@@ -94,6 +95,7 @@ class SidebarScreen extends Component {
     startTimer() {
         Timing.start(CONST.TIMING.SWITCH_REPORT);
         Performance.markStart(CONST.TIMING.SWITCH_REPORT);
+        ReportActionComposeFocusManager.startFocus();
     }
 
     render() {

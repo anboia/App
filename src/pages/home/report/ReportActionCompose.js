@@ -149,12 +149,14 @@ class ReportActionCompose extends React.Component {
 
     componentDidMount() {
         ReportActionComposeFocusManager.onComposerFocus(() => {
-            if (!this.shouldFocusInputOnScreenFocus || !this.props.isFocused) {
+            if (!this.shouldFocusInputOnScreenFocus && !(_.size(this.props.reportActions) === 1)) {
                 return;
             }
-
             this.focus(false);
         });
+        if (this.shouldFocusInputOnScreenFocus || _.size(this.props.reportActions) === 1) {
+            this.focus(true);
+        }
         this.updateComment(this.comment);
     }
 
@@ -510,7 +512,6 @@ class ReportActionCompose extends React.Component {
                                     )}
                                 </AttachmentPicker>
                                 <Composer
-                                    autoFocus={this.shouldFocusInputOnScreenFocus || _.size(this.props.reportActions) === 1}
                                     multiline
                                     ref={this.setTextInputRef}
                                     textAlignVertical="top"
